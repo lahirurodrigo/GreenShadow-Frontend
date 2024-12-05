@@ -1,5 +1,5 @@
 
-const baseUrl = 'http://localhost:8080/CropMonitorSystem/api/v1/';
+const baseUrl = 'http://localhost:5050/greenshadow/api/v1/';
 
 const token = getToken("token");
 console.log(token)
