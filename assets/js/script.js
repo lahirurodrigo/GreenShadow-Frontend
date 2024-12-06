@@ -107,6 +107,11 @@ $("#monitoringLogsNav").on('click', () => {
     navigatePageSideBar("#monitoringLogPage");
     activeStyleInNavBar("#monitoringLogsNav");
     updatePageTitle("Monitoring Log Service");
+    loadAllCropIdsInLog();
+    loadAllFieldIdsInLog();
+    loadAllStaffIdsInLog();
+    loadLogTable();
+    clearLogFields();
 });
 
 $("#staffsNav").on('click', () => {
