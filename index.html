@@ -84,6 +84,7 @@
         <a id="staffsNav" href="#"><i class="bi bi-people"></i> Staff</a>
         <a id="equipmentsNav" href="#"><i class="bi bi-tools"></i> Equipment</a>
         <a id="vehiclesNav" href="#"><i class="bi bi-truck"></i> Vehicles</a>
+        <a id="fieldStaffNav" href="#"><i class="bi bi-truck"></i> Field-Staff</a>
         <a id="logoutNav" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a>
     </div>
 </div>
@@ -685,6 +686,53 @@
         </div>
     </div>
 
+    <!-- User Content -->
+    <div id="fieldStaffPage">
+        <div class="container containerPage">
+            <h2>Field Staff Management</h2>
+
+            <!-- User Form -->
+            <form id="FieldStaffForm">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="fieldStafFieldCode" class="form-label">Field Code</label>
+                        <select id="fieldStafFieldCode" class="form-select form-select-sm" required>
+
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fieldStaffStaffId" class="form-label">Staff ID</label>
+                        <select id="fieldStaffStaffId" class="form-select form-select-sm" multiple>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mt-4 d-flex justify-content-end gap-2">
+                    <button id="btnSaveFieldStaff" type="button" class="btn btn-primary btn-sm">Add</button>
+                    <button id="btnUpdateFieldStaff" type="button" class="btn btn-secondary btn-sm">Remove</button>
+                    <button id="btnSearchFieldStaff" type="button" class="btn btn-warning btn-sm">Search</button>
+                </div>
+            </form>
+
+            <!-- Table to display User details -->
+            <div class="table-container mt-4">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Field Code</th>
+                        <th>Staff ID</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="fieldStaffTableBody">
+                    <!-- User data rows will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
@@ -700,6 +748,7 @@
 <script src="controller/VehicleController.js"></script>
 <script src="controller/EquipmentController.js"></script>
 <script src="controller/LogServiceController.js"></script>
+<script src="controller/FieldStaffController.js"></script>
 <script src="assets/js/script.js"></script>
 
 </body>

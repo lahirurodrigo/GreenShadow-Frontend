@@ -30,6 +30,7 @@ function navigatePageSideBar(page) {
     $("#monitoringLogPage").css({display: 'none'});
     $("#userPage").css({display: 'none'});
     $("#dashBoardPage").css({display: 'none'});
+    $("#fieldStaffPage").css({display: 'none'});
 
     $("#allPageSidebar").css({display: 'block'});
     $("#mainContentOfPages").css({display: 'block'});
@@ -46,6 +47,7 @@ function activeStyleInNavBar(button) {
     $('#staffsNav').removeClass('active');
     $('#equipmentsNav').removeClass('active');
     $('#vehiclesNav').removeClass('active');
+    $('#fieldStaffNav').removeClass('active');
 
     $(button).addClass('active');
 }
@@ -98,9 +100,10 @@ $("#cropsNav").on('click', () => {
 $("#fieldsNav").on('click', () => {
     navigatePageSideBar("#fieldPage");
     activeStyleInNavBar("#fieldsNav");
-    updatePageTitle("Fields");
-    loadFieldTable();
+    updatePageTitle("Field Staff Assignment");
     loadCropCodes();
+    loadFieldTable();
+
 });
 
 $("#monitoringLogsNav").on('click', () => {
@@ -112,6 +115,14 @@ $("#monitoringLogsNav").on('click', () => {
     loadAllStaffIdsInLog();
     loadLogTable();
     clearLogFields();
+});
+
+$("#fieldStaffNav").on('click', () => {
+    navigatePageSideBar("#fieldStaffPage");
+    activeStyleInNavBar("#fieldStaffNav");
+    updatePageTitle("Monitoring Log Service");
+    loadAllFieldIdsInFieldStaff();
+    loadAllStaffIdsInFieldStaff();
 });
 
 $("#staffsNav").on('click', () => {
