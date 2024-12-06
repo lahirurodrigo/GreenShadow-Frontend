@@ -1,3 +1,4 @@
+// Save Field
 $('#btnFieldSave').on('click', () => {
     const formData = new FormData();
     formData.append("fieldCode", $('#fieldCode').val());
@@ -38,6 +39,7 @@ $('#btnFieldSave').on('click', () => {
     });
 });
 
+// Delete Field
 $('#btnFieldDelete').on('click', function (){
     var fieldId = $('#fieldCode').val();
 
@@ -83,6 +85,55 @@ $('#btnFieldDelete').on('click', function (){
         }
     });
 });
+
+$('#btnFieldSearch').on('click', function ()  {
+
+    var fieldId = $('#fieldCode').val();
+
+
+    $.ajax({
+        method: "GET",
+        url: baseUrl + `fields/${fieldId}`,
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+        success: function (field) {
+            // Set text fields
+            $('#fieldCode').val(field.fieldCode);
+            $('#fieldName').val(field.fieldName);
+            $('#fieldLocation').val(field.fieldLocation);
+            $('#fieldSize').val(field.fieldSize);
+            // Handle Image 01
+            if (field.fieldImage01) {
+                // Convert Base64 to File object
+                const file1 = base64ToFile(`data:image/png;base64,${field.fieldImage01}`, "image01.png");
+                // Use DataTransfer to simulate file input
+                const dataTransfer1 = new DataTransfer();
+                dataTransfer1.items.add(file1);
+                // Assign to input field
+                document.querySelector("#fieldImage01").files = dataTransfer1.files;
+                // Set preview
+                $("#previewFieldImage01").attr("src", `data:image/png;base64,${field.fieldImage01}`);
+            }
+            // Handle Image 02
+            if (field.fieldImage02) {
+                // Convert Base64 to File object
+                const file2 = base64ToFile(`data:image/png;base64,${field.fieldImage02}`, "image02.png");
+                // Use DataTransfer to simulate file input
+                const dataTransfer2 = new DataTransfer();
+                dataTransfer2.items.add(file2);
+                // Assign to input field
+                document.querySelector("#fieldImage02").files = dataTransfer2.files;
+                // Set preview
+                $("#previewFieldImage02").attr("src", `data:image/png;base64,${field.fieldImage02}`);
+            }
+        },
+        error: function (error) {
+            console.error("Error fetching field data:", error);
+        }
+    });
+})
 
 
 // Validate Fields
