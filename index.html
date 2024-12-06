@@ -303,11 +303,6 @@
         <div class="container containerPage">
             <h2>Crop Management</h2>
 
-            <!-- Search Crop -->
-            <div class="search-container">
-                <input type="text" id="searchCrop" class="search-bar" placeholder="Search Crops..." onkeyup="searchCrops()">
-            </div>
-
             <form id="cropForm" class="mt-4" enctype="multipart/form-data">
                 <div class="row g-3">
                     <div class="col-md-4">
@@ -332,20 +327,16 @@
                         <label for="cropSeason" class="form-label">Season</label>
                         <input type="text" class="form-control form-control-sm" id="cropSeason" name="cropSeason" required>
                     </div>
-                    <div class="col-md-4">
-                        <label for="cropFieldCode" class="form-label">Field Code</label>
-                        <input type="text" class="form-control form-control-sm" id="cropFieldCode" name="fieldCode" required>
-                    </div>
                 </div>
 
                 <!-- Image Upload Field -->
                 <div class="image-upload-container mt-4 d-flex justify-content-center gap-3">
                     <div class="form-group text-center">
-                        <label for="cropImage01" class="form-label d-block">Crop Image</label>
+                        <label for="cropImage" class="form-label d-block">Crop Image</label>
                         <div class="image-upload-wrapper">
                             <img id="previewCropImage01" class="image-preview previewImage"
                                  src="https://via.placeholder.com/200x200?text=Click+to+upload+Image+1" alt="Image 1 Preview">
-                            <input type="file" class="form-control d-none imagesOfInput" id="cropImage01" name="cropImage01" accept="image/*"
+                            <input type="file" class="form-control d-none imagesOfInput" id="cropImage" name="cropImage01" accept="image/*"
                                    required>
                         </div>
                     </div>
@@ -353,13 +344,27 @@
 
                 <!-- Action Buttons -->
                 <div class="d-flex justify-content-end mt-4 gap-2">
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Update</button>
+                    <button id="btn-crop-save" type="button" class="btn btn-primary btn-sm">Save</button>
+                    <button id="btn-crop-search" type="button" class="btn btn-warning btn-sm">Search</button>
+                    <button id="btn-crop-update" type="button" class="btn btn-secondary btn-sm">Update</button>
+                    <button id="btn-crop-delete" type="button" class="btn btn-danger btn-sm">Delete</button>
                 </div>
             </form>
 
             <!-- Table to Display Crop Details -->
+
             <div class="table-container">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="search-by-cropCommonName" class="form-label">Common Name</label>
+                        <input type="text" class="form-control form-control-sm" id="search-by-cropCommonName" name="cropCommonName" required>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button id="btn-crop-search-by-commonName" type="button" class="btn btn-warning btn-sm">Search</button>
+                    </div>
+                </div>
+
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -367,7 +372,7 @@
                         <th>Common Name</th>
                         <th>Scientific Name</th>
                         <th>Category</th>
-                        <th>Action</th>
+                        <th>Season</th>
                     </tr>
                     </thead>
                     <tbody id="CropTableBody">
@@ -667,8 +672,9 @@
 
 <script src="assets/lib/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="assets/js/navJs.js"></script>
+<script src="assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="controller/LoginController.js"></script>
+<script src="controller/CropController.js"></script>
 </body>
 </html>

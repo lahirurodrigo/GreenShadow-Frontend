@@ -92,6 +92,7 @@ $("#cropsNav").on('click', () => {
     navigatePageSideBar("#cropPage");
     activeStyleInNavBar("#cropsNav");
     updatePageTitle("Crops");
+    loadCropTable();
 });
 
 $("#fieldsNav").on('click', () => {
@@ -179,3 +180,14 @@ $(document).ready(function () {
         }
     });
 });
+
+// Function to convert Base64 string to File object
+function base64ToFile(base64String, fileName) {
+    const byteString = atob(base64String.split(',')[1]);
+    const mimeString = base64String.split(',')[0].split(':')[1].split(';')[0];
+    const byteArray = new Uint8Array(byteString.length);
+    for (let i = 0; i < byteString.length; i++) {
+        byteArray[i] = byteString.charCodeAt(i);
+    }
+    return new File([byteArray], fileName, { type: mimeString });
+}
