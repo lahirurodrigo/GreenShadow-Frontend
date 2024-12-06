@@ -45,7 +45,61 @@ $('#btn-staff-save').on('click', () => {
             });
         },
         error: function (result) {
-            console.log(result);  // Log any errors for debugging
+            Swal.fire({
+                position: "top-middle",
+                icon: "error",
+                title: "Staff not saved",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+    });
+});
+
+// Delete staff
+$('#btn-staff-delete').on('click', function () {
+    var staffId = $('#staffId').val();
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to undo this action!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                method: "DELETE",
+                url: baseUrl + `staff/${staffId}`,
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                success: function(response) {
+                    console.log("Staff deleted successfully:", response);
+                    $(`tr[data-staff-id='${staffId}']`).remove();
+                    clearStaffFields();
+                    loadStaffTable();
+                    Swal.fire(
+                        'Deleted!',
+                        'The staff member has been deleted.',
+                        'success'
+                    );
+                },
+                error: function(error) {
+                    console.error("Error deleting staff:", error);
+                    Swal.fire(
+                        'Error!',
+                        'There was an issue deleting the staff.',
+                        'error'
+                    );
+                }
+            });
+        } else {
+            console.log("Deletion cancelled by user.");
         }
     });
 });
