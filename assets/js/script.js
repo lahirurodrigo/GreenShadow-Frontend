@@ -100,6 +100,7 @@ $("#fieldsNav").on('click', () => {
     activeStyleInNavBar("#fieldsNav");
     updatePageTitle("Fields");
     loadFieldTable();
+    loadCropCodes();
 });
 
 $("#monitoringLogsNav").on('click', () => {
@@ -191,3 +192,5 @@ function base64ToFile(base64String, fileName) {
     }
     return new File([byteArray], fileName, { type: mimeString });
 }
+
+
