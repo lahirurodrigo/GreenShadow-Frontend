@@ -104,6 +104,49 @@ $('#btn-staff-delete').on('click', function () {
     });
 });
 
+// Search staff
+$('#btn-staff-search').on('click', function () {
+
+    var staffId = $('#staffId').val();
+
+    $.ajax({
+        method: "GET",
+        url: baseUrl + `staff/${staffId}`,
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+        success: function (staff) {
+            $('#staffId').val(staff.staffId);
+            $('#firstName').val(staff.firstName);
+            $('#lastName').val(staff.lastName);
+            $('#designation').val(staff.designation);
+            $('#gender').val(staff.gender);
+            $('#StaffRole').val(staff.role);
+            $('#joinDate').val(formatDate(staff.joinDate));
+            $('#dateOfBirth').val(formatDate(staff.dob));
+            $('#contactNo').val(staff.contactNo);
+            $('#email').val(staff.email);
+            $('#address01').val(staff.address01);
+            $('#address02').val(staff.address02);
+            $('#address03').val(staff.address03);
+            $('#address04').val(staff.address04);
+            $('#address05').val(staff.address05);
+        },
+        error: function (error) {
+            console.error("Error fetching Staff data:", error);
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Error fetching Staff data:", error,
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+    });
+
+});
+
 // Clear Fields of Staff Form
 
 function clearStaffFields() {
