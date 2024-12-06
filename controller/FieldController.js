@@ -37,6 +37,54 @@ $('#btnFieldSave').on('click', () => {
         }
     });
 });
+
+$('#btnFieldDelete').on('click', function (){
+    var fieldId = $('#fieldCode').val();
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to undo this action!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                method: "DELETE",
+                url: baseUrl + `fields/${fieldId}`,
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                success: function(response) {
+                    console.log("Field deleted successfully:", response);
+                    $(`tr[data-field-id='${fieldId}']`).remove();
+                    clearFieldFields();
+                    loadFieldTable();
+                    Swal.fire(
+                        'Deleted!',
+                        'The field has been deleted.',
+                        'success'
+                    );
+                },
+                error: function(error) {
+                    Swal.fire(
+                        'Error!',
+                        'There was an issue deleting the field.',
+                        'error'
+                    );
+                }
+            });
+        } else {
+            console.log("Deletion cancelled by user.");
+        }
+    });
+});
+
+
 // Validate Fields
 function validateField(formData) {
     const showError = (message) => {
@@ -85,7 +133,6 @@ function loadCropCodes() {
 
             // Add crop codes as options
             result.forEach(crop => {
-                console.log("crop-code", crop.cropCode);
                 cropDropdown.append(`<option value="${crop.cropCode}">${crop.cropCode}</option>`);
             });
         },
