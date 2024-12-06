@@ -120,6 +120,10 @@ $("#equipmentsNav").on('click', () => {
     navigatePageSideBar("#equipmentPage");
     activeStyleInNavBar("#equipmentsNav");
     updatePageTitle("Equipments");
+    loadAllEquipmentStaffID();
+    loadAllEquipmentFieldCode();
+    loadEquipmentTable();
+    clearEquipmentFields();
 });
 
 $("#vehiclesNav").on('click', () => {

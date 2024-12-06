@@ -421,18 +421,22 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label for="equipmentStaffId" class="form-label">Assigned Staff ID</label>
-                        <input type="text" class="form-control form-control-sm" id="equipmentStaffId" name="staffId">
+                        <label for="equipmentStaffId" class="form-label">Staff ID</label>
+                        <select id="equipmentStaffId" class="form-select form-select-sm" required>
+
+                        </select>
                     </div>
                     <div class="col-md-4">
-                        <label for="fieldCode" class="form-label">Field Code</label>
-                        <input type="text" class="form-control form-control-sm" id="equipmentFieldCode" name="fieldCode">
+                        <label for="equipmentFieldCode" class="form-label">Field Code</label>
+                        <select id="equipmentFieldCode" class="form-select form-select-sm" required>
+
+                        </select>
                     </div>
                 </div>
 
                 <div class="mt-4 d-flex justify-content-end gap-2">
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Update</button>
+                    <button id="btnSaveEquipment" type="button" class="btn btn-primary btn-sm">Submit</button>
+                    <button id="btnUpdateEquipment" type="button" class="btn btn-secondary btn-sm">Update</button>
                 </div>
             </form>
 
@@ -688,6 +692,7 @@
 <script src="controller/StaffController.js"></script>
 <script src="controller/UserController.js"></script>
 <script src="controller/VehicleController.js"></script>
+<script src="controller/EquipmentController.js"></script>
 <script src="assets/js/script.js"></script>
 
 </body>
