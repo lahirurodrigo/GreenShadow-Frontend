@@ -147,6 +147,64 @@ $('#btn-staff-search').on('click', function () {
 
 });
 
+// Update staff
+
+$('#btn-staff-update').on('click' ,()=>{
+    console.log("click update button")
+    const staffData = {
+        staffId: $('#staffId').val(),
+        firstName: $('#firstName').val(),
+        lastName: $('#lastName').val(),
+        designation: $('#designation').val(),
+        gender: $('#gender').val(),
+        role: $('#StaffRole').val(),
+        joinDate: $('#joinDate').val(),
+        dob: $('#dateOfBirth').val(),
+        contactNo: $('#contactNo').val(),
+        email: $('#email').val(),
+        address01: $('#address01').val(),
+        address02: $('#address02').val(),
+        address03: $('#address03').val(),
+        address04: $('#address04').val(),
+        address05: $('#address05').val()
+    };
+    console.log(staffData);
+    if (!validateStaff(staffData)) {
+        return;
+    }
+    var staffId = $('#staffId').val();
+    $.ajax({
+        method: "PUT",
+        url: baseUrl + `staff/${staffId}`,
+        data: JSON.stringify(staffData),  // Send the data as JSON
+        contentType: "application/json",  // Set content type to JSON
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        success: function (result) {
+            clearStaffFields();
+            loadStaffTable();
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Staff Update successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        },
+        error: function (result) {
+            console.log(result);  // Log any errors for debugging
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Error Staff data:", result,
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+    });
+});
+
 // Clear Fields of Staff Form
 
 function clearStaffFields() {

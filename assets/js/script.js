@@ -113,6 +113,7 @@ $("#staffsNav").on('click', () => {
     navigatePageSideBar("#staffPage");
     activeStyleInNavBar("#staffsNav");
     updatePageTitle("Staff");
+    loadStaffTable();
 });
 
 $("#equipmentsNav").on('click', () => {
