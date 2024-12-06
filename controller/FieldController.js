@@ -34,7 +34,13 @@ $('#btnFieldSave').on('click', () => {
             });
         },
         error: function (result) {
-            console.log(result);
+            Swal.fire({
+                position: "top-middle",
+                icon: "error",
+                title: "No Crop Codes Found",
+                showConfirmButton: false,
+                timer: 1500,
+            });
         }
     });
 });
@@ -81,11 +87,18 @@ $('#btnFieldDelete').on('click', function (){
                 }
             });
         } else {
-            console.log("Deletion cancelled by user.");
+            Swal.fire({
+                position: "top-middle",
+                icon: "error",
+                title: "No Crop Codes Found",
+                showConfirmButton: false,
+                timer: 1500,
+            });
         }
     });
 });
 
+// Search Field
 $('#btnFieldSearch').on('click', function ()  {
 
     var fieldId = $('#fieldCode').val();
@@ -130,7 +143,60 @@ $('#btnFieldSearch').on('click', function ()  {
             }
         },
         error: function (error) {
-            console.error("Error fetching field data:", error);
+            Swal.fire({
+                position: "top-middle",
+                icon: "error",
+                title: "No Crop Codes Found",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+    });
+})
+
+$('#btnFieldUpdate').on('click', function () {
+    const formData = new FormData();
+    formData.append("fieldCode", $('#fieldCode').val());
+    formData.append("fieldName", $('#fieldName').val());
+    formData.append("fieldLocation", $('#fieldLocation').val());
+    formData.append("fieldSize", $('#fieldSize').val());
+    formData.append("fieldImage01", $('#fieldImage01')[0].files[0]);
+    formData.append("fieldImage02", $('#fieldImage02')[0].files[0]);
+    formData.append("cropCode", $('#field-crop-code').val());
+
+    console.log([...formData.entries()]); // For debugging purposes
+    if (!validateField(formData)) {
+        return;
+    }
+    var fieldId = $('#fieldCode').val();
+    $.ajax({
+        method: "PUT",
+        url: baseUrl + `fields/${fieldId}`,
+        data: formData,
+        contentType: false, // Required for FormData
+        processData: false, // Prevent jQuery from serializing FormData
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        success: function (result) {
+            loadFieldTable();
+            clearFieldFields()
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Save Field successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        },
+        error: function (result) {
+            Swal.fire({
+                position: "top-middle",
+                icon: "error",
+                title: "No Crop Codes Found",
+                showConfirmButton: false,
+                timer: 1500,
+            });
         }
     });
 })
