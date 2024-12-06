@@ -200,11 +200,6 @@
         <div class="container containerPage">
             <h2>Staff Management</h2>
 
-            <!-- Search Staff -->
-            <div class="search-container">
-                <input type="text" id="searchStaff" class="search-bar" placeholder="Search Staff..." onkeyup="searchFields()">
-            </div>
-
             <form id="StaffForm">
                 <div class="row g-3">
                     <div class="col-md-4">
@@ -269,17 +264,19 @@
                 <div class="row g-3 mt-3">
                     <div class="col-md-12">
                         <label for="address01" class="form-label">Address</label>
-                        <input type="text" class="form-control form-control-sm mb-2" id="address01" name="address01" placeholder="Address Line 1" required>
-                        <input type="text" class="form-control form-control-sm mb-2" id="address02" name="address02" placeholder="Address Line 2">
-                        <input type="text" class="form-control form-control-sm mb-2" id="address03" name="address03" placeholder="Address Line 3">
-                        <input type="text" class="form-control form-control-sm mb-2" id="address04" name="address04" placeholder="Address Line 4">
-                        <input type="text" class="form-control form-control-sm mb-2" id="address05" name="address05" placeholder="Address Line 5">
+                        <input type="text" class="form-control form-control-sm mb-2" id="address01" name="address01" placeholder="No" required>
+                        <input type="text" class="form-control form-control-sm mb-2" id="address02" name="address02" placeholder="Lane">
+                        <input type="text" class="form-control form-control-sm mb-2" id="address03" name="address03" placeholder="Town">
+                        <input type="text" class="form-control form-control-sm mb-2" id="address04" name="address04" placeholder="City">
+                        <input type="text" class="form-control form-control-sm mb-2" id="address05" name="address05" placeholder="District">
                     </div>
                 </div>
 
                 <div class="mt-4 d-flex justify-content-end gap-2">
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                    <button type="button" class="btn btn-secondary btn-sm">Update</button>
+                    <button id="btn-staff-save" type="button" class="btn btn-primary btn-sm">Save</button>
+                    <button id="btn-staff-search" type="button" class="btn btn-warning btn-sm">Search</button>
+                    <button id="btn-staff-update" type="button" class="btn btn-danger btn-sm">Update</button>
+                    <button id="btn-staff-delete" type="button" class="btn btn-secondary btn-sm">Delete</button>
                 </div>
             </form>
 
@@ -681,6 +678,7 @@
 <script src="controller/LoginController.js"></script>
 <script src="controller/CropController.js"></script>
 <script src="controller/FieldController.js"></script>
+<script src="controller/StaffController.js"></script>
 <script src="assets/js/script.js"></script>
 
 </body>
