@@ -154,6 +154,7 @@ $('#btnFieldSearch').on('click', function ()  {
     });
 })
 
+// Update Field
 $('#btnFieldUpdate').on('click', function () {
     const formData = new FormData();
     formData.append("fieldCode", $('#fieldCode').val());
