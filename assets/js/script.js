@@ -85,12 +85,15 @@ $("#dashboardNav").on('click', () => {
 });
 
 $("#usersNav").on('click', () => {
+    if ($("#usersNav").hasClass("disabled")) return;
     navigatePageSideBar("#userPage");
     activeStyleInNavBar("#usersNav");
     updatePageTitle("User");
+    loadUserTable();
 });
 
 $("#cropsNav").on('click', () => {
+    if ($("#cropsNav").hasClass("disabled")) return;
     navigatePageSideBar("#cropPage");
     activeStyleInNavBar("#cropsNav");
     updatePageTitle("Crops");
@@ -98,6 +101,7 @@ $("#cropsNav").on('click', () => {
 });
 
 $("#fieldsNav").on('click', () => {
+    if ($("#fieldsNav").hasClass("disabled")) return;
     navigatePageSideBar("#fieldPage");
     activeStyleInNavBar("#fieldsNav");
     updatePageTitle("Field Staff Assignment");
@@ -107,6 +111,7 @@ $("#fieldsNav").on('click', () => {
 });
 
 $("#monitoringLogsNav").on('click', () => {
+    if ($("#monitoringLogsNav").hasClass("disabled")) return;
     navigatePageSideBar("#monitoringLogPage");
     activeStyleInNavBar("#monitoringLogsNav");
     updatePageTitle("Monitoring Log Service");
@@ -118,6 +123,7 @@ $("#monitoringLogsNav").on('click', () => {
 });
 
 $("#fieldStaffNav").on('click', () => {
+    if ($("#fieldStaffNav").hasClass("disabled")) return;
     navigatePageSideBar("#fieldStaffPage");
     activeStyleInNavBar("#fieldStaffNav");
     updatePageTitle("Monitoring Log Service");
@@ -126,6 +132,7 @@ $("#fieldStaffNav").on('click', () => {
 });
 
 $("#staffsNav").on('click', () => {
+    if ($("#staffsNav").hasClass("disabled")) return;
     navigatePageSideBar("#staffPage");
     activeStyleInNavBar("#staffsNav");
     updatePageTitle("Staff");
@@ -133,6 +140,7 @@ $("#staffsNav").on('click', () => {
 });
 
 $("#equipmentsNav").on('click', () => {
+    if ($("#equipmentsNav").hasClass("disabled")) return;
     navigatePageSideBar("#equipmentPage");
     activeStyleInNavBar("#equipmentsNav");
     updatePageTitle("Equipments");
@@ -143,6 +151,7 @@ $("#equipmentsNav").on('click', () => {
 });
 
 $("#vehiclesNav").on('click', () => {
+    if ($("#vehiclesNav").hasClass("disabled")) return;
     navigatePageSideBar("#vehiclePage");
     activeStyleInNavBar("#vehiclesNav");
     updatePageTitle("Vehicles");

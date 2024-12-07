@@ -86,7 +86,7 @@ function restrictNavigationLinks(userRole) {
     const restrictedLinks = {
         MANAGER: [], // Links restricted for 'viewer'
         SCIENTIST: ["#usersNav", "#staffsNav", "#fieldStaffNav", "#equipmentsNav", "#vehiclesNav"], // Links restricted for 'staff'
-        ADMINISTRATIVE: ["#cropsNav", "#fieldsNav", "#monitoringLogsNav"], // Links restricted for 'admin'
+        ADMIN: ["#cropsNav", "#fieldsNav", "#monitoringLogsNav"], // Links restricted for 'admin'
         EMPLOYEE: ["#usersNav", "#staffsNav", "#fieldStaffNav", "#equipmentsNav", "#vehiclesNav","#cropsNav", "#fieldsNav", "#monitoringLogsNav"], // Links restricted for 'admin'
     };
 
