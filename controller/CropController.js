@@ -47,6 +47,7 @@ $("#btn-crop-save").on('click', function ()  {
             });
         },
     });
+    clearCropFields();
 });
 
 
@@ -228,5 +229,41 @@ function loadCropTable() {
             console.log(result);
         }
     });
+}
+
+// To filter Crop table
+function searchCrops() {
+    console.log("1111111111111")
+    // Get the search query
+    var searchQuery = $('#searchCrop').val().toLowerCase();
+    // Iterate through each row in the crop table body
+    $('#cropTable tbody tr').each(function() {
+        var row = $(this);
+        // Get the text content of each cell in the row
+        var cropCode = row.find('td').eq(0).text().toLowerCase();
+        var commonName = row.find('td').eq(1).text().toLowerCase();
+        var scientificName = row.find('td').eq(2).text().toLowerCase();
+        var category = row.find('td').eq(3).text().toLowerCase();
+        var season = row.find('td').eq(4).text().toLowerCase();
+        // Check if the search query matches any cell content
+        if (cropCode.includes(searchQuery) || commonName.includes(searchQuery) || scientificName.includes(searchQuery)
+            || category.includes(searchQuery) || category.includes(searchQuery)) {
+            row.show(); // Show the row if it matches
+        } else {
+            row.hide(); // Hide the row if it doesn't match
+        }
+    });
+}
+
+
+function clearCropFields() {
+    $('#cropCode').val("");
+    $('#cropCommonName').val("");
+    $('#cropScientificName').val("");
+    $('#cropCategory').val("");
+    $('#cropSeason').val("");
+    $('#cropFieldCode').val("");
+    $('#cropImage01').val("");
+    $('#previewCropImage01').attr("src", "https://via.placeholder.com/200x200?text=Click+to+upload+Image+1");
 }
 
