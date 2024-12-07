@@ -205,6 +205,10 @@ $('#btn-staff-update').on('click' ,()=>{
     });
 });
 
+$('#btn-staff-sort').on('click', function () {
+   loadSortedStaffTable();
+});
+
 // Clear Fields of Staff Form
 
 function clearStaffFields() {
@@ -287,6 +291,42 @@ function loadStaffTable() {
             });
             var staffMemberCount = $('#StaffTableBody tr').length;
             $('#staffCount').text(`${staffMemberCount}`);
+        },
+        error: function (result) {
+            console.log(result);
+        }
+    });
+}
+
+// Load Sorted Staff Table
+function loadSortedStaffTable() {
+    $('#StaffTableBody').empty();
+    $.ajax({
+        method: "GET",
+        url: baseUrl + `staff/sorted`, // Assuming your backend endpoint for sorted staff list is '/staff/sorted'
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        success: function (result) {
+            console.log(result); // Log the result to verify it's an array
+            if (Array.isArray(result)) {
+                result.forEach(staff => {
+                    $('#StaffTableBody').append(`
+                        <tr data-staff-id="${staff.staffId}">
+                            <td>${staff.staffId}</td>
+                            <td>${staff.firstName}</td>
+                            <td>${staff.designation}</td>
+                            <td>${staff.contactNo}</td>
+                            <td>${staff.email}</td>
+                        </tr>
+                    `);
+                });
+                var staffMemberCount = $('#StaffTableBody tr').length;
+                $('#staffCount').text(`${staffMemberCount}`);
+            } else {
+                console.error("Response is not an array", result);
+            }
         },
         error: function (result) {
             console.log(result);
