@@ -224,4 +224,3 @@ function formatDate(isoDate) {
     return date.toISOString().split('T')[0]; // Extract yyyy-MM-dd
 }
 
-
